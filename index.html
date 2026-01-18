@@ -1,147 +1,87 @@
 <style>
-  .money-wrap {
-    max-width: 900px;
-    margin: 60px auto;
-    padding: 0 16px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont;
+  .money-wrap{max-width:980px;margin:60px auto;padding:0 16px;font-family:system-ui,-apple-system,BlinkMacSystemFont}
+  .money-title{font-size:30px;margin:0 0 10px}
+  .money-sub{color:#94a3b8;margin:0 0 26px;line-height:1.7}
+  .grid{display:grid;grid-template-columns:1fr;gap:18px}
+  @media(min-width:860px){.grid{grid-template-columns:1.15fr .85fr}}
+  .card{background:#1e293b;border:1px solid #334155;border-radius:18px;padding:22px}
+  .tag{display:inline-block;background:#0b1220;border:1px solid #334155;color:#cbd5f5;border-radius:999px;padding:6px 12px;font-size:13px;margin-bottom:10px}
+  .card h3{margin:6px 0 10px;font-size:20px}
+  .card p{color:#cbd5f5;line-height:1.7;margin:8px 0}
+  .small{font-size:13px;color:#94a3b8;line-height:1.6}
+  .btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+  .btn{display:inline-block;padding:12px 16px;border-radius:12px;text-decoration:none;font-weight:800}
+  .btn-primary{background:#38bdf8;color:#0f172a}
+  .btn-green{background:#22c55e;color:#052e16}
+  .btn-ghost{background:#0b1220;color:#e5e7eb;border:1px solid #334155}
+  .list{padding-left:18px;margin:10px 0}
+  .list li{margin:8px 0}
+  .divider{height:1px;background:#334155;margin:18px 0}
+  .hero{
+    background: linear-gradient(135deg, rgba(56,189,248,.20), rgba(34,197,94,.15));
+    border:1px solid rgba(125,211,252,.35);
+    box-shadow: 0 10px 30px rgba(0,0,0,.25);
   }
-  .money-title {
-    font-size: 28px;
-    margin-bottom: 10px;
-  }
-  .money-sub {
-    color: #94a3b8;
-    margin-bottom: 28px;
-    line-height: 1.6;
-  }
-  .money-card {
-    background: #1e293b;
-    border-radius: 16px;
-    padding: 24px;
-    margin-bottom: 24px;
-    border: 1px solid #334155;
-  }
-  .money-card h3 {
-    margin-top: 0;
-    margin-bottom: 12px;
-    font-size: 20px;
-  }
-  .money-card p {
-    color: #cbd5f5;
-    line-height: 1.6;
-  }
-  .money-card ul {
-    padding-left: 18px;
-    margin: 12px 0;
-  }
-  .money-card li {
-    margin: 8px 0;
-  }
-  .tag {
-    display: inline-block;
-    background: #0b1220;
-    border: 1px solid #334155;
-    color: #cbd5f5;
-    border-radius: 999px;
-    padding: 6px 12px;
-    font-size: 13px;
-    margin-bottom: 10px;
-  }
-  .btn-row {
-    margin-top: 16px;
-  }
-  .btn-main {
-    display: inline-block;
-    padding: 12px 18px;
-    background: #38bdf8;
-    color: #0f172a;
-    font-weight: 700;
-    border-radius: 10px;
-    text-decoration: none;
-    margin-right: 10px;
-  }
-  .btn-green {
-    display: inline-block;
-    padding: 12px 18px;
-    background: #22c55e;
-    color: #052e16;
-    font-weight: 700;
-    border-radius: 10px;
-    text-decoration: none;
-  }
-  .small {
-    font-size: 13px;
-    color: #94a3b8;
-  }
+  .hero h3{font-size:22px}
+  .pill{display:inline-flex;gap:8px;align-items:center;background:rgba(15,23,42,.55);border:1px solid rgba(148,163,184,.35);color:#e5e7eb;border-radius:999px;padding:8px 12px;font-size:13px}
+  .pill b{color:#7dd3fc}
+  .product{background:#0b1220;border:1px solid #334155;border-radius:14px;padding:14px;margin-top:10px}
+  .product-title{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+  .product-title b{font-size:15px}
+  .badge{font-size:12px;background:#1e293b;border:1px solid #334155;color:#cbd5f5;border-radius:999px;padding:4px 10px}
+  a{color:#7dd3fc}
+  .notice{background:#0b1220;border:1px dashed #334155;border-radius:14px;padding:14px}
+  .input{width:100%;padding:12px;border-radius:12px;border:1px solid #334155;background:#0b1220;color:#e5e7eb;box-sizing:border-box}
 </style>
 
 <div class="money-wrap" id="money">
-
   <h2 class="money-title">💰 最快變現入口（0 成本）</h2>
   <p class="money-sub">
-    這個網站的運作方式很簡單：<br>
-    <b>先用免費工具幫你釐清副業方向，再用我實際在用的工具與商品，幫你少走冤枉路。</b>
+    這個網站的流程是：<b>免費工具引流 → 推薦連結與進階方案轉換</b>。<br>
+    你不用會程式，也可以靠「工具 + 內容 + 推薦」慢慢做成長期收入。
   </p>
 
-  <div class="money-card">
-    <span class="tag">① 聯盟推薦</span>
-    <h3>我實際推薦的商品</h3>
-    <p>適合剛開始做副業、想快速起步的人。</p>
-    <ul>
-      <li>👉 副業必備小物（補光燈、桌面支架、麥克風）</li>
-      <li>👉 提升效率工具（讓你做事快一倍、不容易放棄）</li>
-    </ul>
-    <p class="small">※ 之後會替換為正式聯盟連結</p>
-  </div>
-
-  <div class="money-card">
-    <span class="tag">② 每天在用</span>
-    <h3>我每天在用的工具</h3>
-    <ul>
-      <li>
-        👉 <a href="https://www.canva.com" target="_blank"><b>Canva</b></a>
-        <span class="small">－ 做圖、模板，新手也能用</span>
-      </li>
-      <li>
-        👉 <a href="https://www.notion.so" target="_blank"><b>Notion</b></a>
-        <span class="small">－ 整理副業流程、任務、筆記</span>
-      </li>
-    </ul>
-  </div>
-
-  <div class="money-card">
-    <span class="tag">③ 想更快</span>
-    <h3>我可以直接幫你整理成可賣方案</h3>
+  <!-- A：主打卡（最高轉換） -->
+  <div class="card hero">
+    <span class="tag">🔥 主打：先拿結果再決定要不要做</span>
+    <h3>我先免費回你 3 個「可執行副業方向」</h3>
     <p>
-      如果你不想自己摸索，<br>
-      <b>我可以幫你把副業點子，整理成「可執行流程＋內容模板」。</b>
+      你只要把你的<b>技能 / 資源 / 興趣</b>丟給我，<br>
+      我會回你 3 個方向，每個都附：<b>怎麼開始、要做什麼內容、可用什麼工具、怎麼變現</b>。
     </p>
 
     <div class="btn-row">
-      <a class="btn-main" href="tools/idea.html">👉 先用免費工具</a>
-      <a class="btn-green" href="#contact">👉 直接找我（最快）</a>
+      <a class="btn btn-primary" href="tools/idea.html">👉 先用免費工具（30秒）</a>
+      <a class="btn btn-green" href="#contact">👉 直接找我（最快）</a>
+      <a class="btn btn-ghost" href="#vip">✨ 看進階版（會員/模板）</a>
+    </div>
+
+    <div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:10px">
+      <span class="pill">✅ <b>適合新手</b>：不知道從哪開始的人</span>
+      <span class="pill">✅ <b>0成本</b>：不需要先投入</span>
+      <span class="pill">✅ <b>可複製</b>：每週照做就會累積</span>
     </div>
   </div>
 
-  <div class="money-card" id="contact">
-    <span class="tag">聯絡我</span>
-    <h3>不推銷，只給方向</h3>
-    <p>
-      加入 LINE，貼上你的：<br>
-      <b>技能 / 資源 / 興趣</b><br>
-      我會回你 <b>3 個可執行的副業方向（免費）。</b>
-    </p>
+  <div class="grid" style="margin-top:18px">
+    <!-- B：聯盟推薦（像心得、不是硬推） -->
+    <div class="card">
+      <span class="tag">② 聯盟推薦（像心得，不像推銷）</span>
+      <h3>我實際在用的工具 / 入門必備</h3>
+      <p class="small">原則：只放少量、每個都給一句為什麼。之後把連結換成你的聯盟連結即可。</p>
 
-    <p>
-      ✅ LINE：
-      <a href="https://line.me/R/ti/p/@YOUR_LINE_ID" target="_blank">
-        點我加入
-      </a>
-    </p>
+      <div class="product">
+        <div class="product-title">
+          <b>Canva（做圖/模板）</b>
+          <span class="badge">內容產出</span>
+        </div>
+        <p class="small">為什麼推薦：新手最快做出「看起來專業」的封面、貼文、簡報。</p>
+        <a href="https://www.canva.com" target="_blank">👉 我用的工具連結</a>
+      </div>
 
-    <p class="small">
-      提示：你不需要想好要做什麼，只要描述你的狀況即可。
-    </p>
-  </div>
-
-</div>
+      <div class="product">
+        <div class="product-title">
+          <b>Notion（整理流程/任務/筆記）</b>
+          <span class="badge">流程管理</span>
+        </div>
+        <p class="small">為什麼推薦：把副
