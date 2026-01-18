@@ -1,1 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>副業點子產生器｜AI 工具中心</title>
+  <style>
+    body{font-family:system-ui,-apple-system,BlinkMacSystemFont;background:#0f172a;color:#e5e7eb;margin:0}
+    .wrap{max-width:900px;margin:auto;padding:30px 16px}
+    .card{background:#1e293b;border-radius:14px;padding:18px;margin:14px 0}
+    h1{margin:0 0 8px;font-size:28px}
+    p{color:#cbd5f5;line-height:1.6}
+    input,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #334155;background:#0b1220;color:#e5e7eb;box-sizing:border-box}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:#38bdf8;color:#0f172a;font-weight:700;border:none;cursor:pointer;margin-top:10px}
+    .btn2{display:inline-block;padding:10px 14px;border-radius:10px;background:#22c55e;color:#052e16;font-weight:700;border:none;cursor:pointer;margin-left:8px;margin-top:10px}
+    .tag{display:inline-block;background:#0b1220;border:1px solid #334155;border-radius:999px;padding:6px 10px;margin:6px 6px 0 0;color:#cbd5f5;font-size:13px}
+    .small{font-size:13px;color:#94a3b8}
+    a{color:#7dd3fc}
+    ul{margin:8px 0 0 18px}
+    li{margin:6px 0}
+    .grid{display:grid;grid-template-columns:1fr;gap:12px}
+    @media(min-width:720px){.grid{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>🤖 副業點子產生器</h1>
+    <p>輸入你擁有的「技能/資源/興趣」，我會給你一組可執行的副業點子（免成本版本）。之後也能升級成真正 AI 版本 🔥</p>
+
+    <div class="card">
+      <label class="small">輸入（越具體越好，例如：會用手機剪影片、愛寵物、會做簡報、懂幣圈、會找資料…）</label>
+      <textarea id="input" rows="4" placeholder="例：我不會程式，但我會用 AI 做圖、喜歡寵物用品，也想做副業"></textarea>
+      <button class="btn" onclick="gen()">產生點子</button>
+      <button class="btn2" onclick="copyResult()">複製結果</button>
+      <div class="small" style="margin-top:10px">提示：你可以把這結果貼到社群/LINE/Notion，當成內容引流。</div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2 style="margin:0 0 8px">✅ 你的副業點子</h2>
+        <div id="ideas"></div>
+      </div>
+      <div class="card">
+        <h2 style="margin:0 0 8px">🧭 下一步行動清單</h2>
+        <div id="steps"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 style="margin:0 0 8px">💰 變現方式（新手最快）</h2>
+      <div id="monetize"></div>
+      <div class="small" style="margin-top:10px">
+        你可以把「推薦連結」換成你自己的聯盟連結（Shopee/蝦皮、Amazon、或你想推的工具）。
+      </div>
+    </div>
+
+    <div class="small" style="margin-top:18px">
+      ← <a href="../index.html">回首頁</a>
+    </div>
+  </div>
+
+<script>
+function pickTags(text){
+  const t = text.toLowerCase();
+  const tags = [];
+  const map = [
+    ["寵物","pet"],["電商","shop"],["蝦皮","shop"],["shopee","shop"],["amazon","shop"],
+    ["幣","crypto"],["bitcoin","crypto"],["eth","crypto"],["交易","crypto"],
+    ["影片","video"],["剪輯","video"],["youtube","video"],["短影音","video"],
+    ["設計","design"],["做圖","design"],["海報","design"],["logo","design"],
+    ["寫作","writ]()
 
