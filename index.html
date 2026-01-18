@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AI 副業工具中心</title>
 
+  <!-- ✅ C) Google Analytics 4（可選）
+       1) 先去 GA 建立 GA4 -> 拿到 Measurement ID（長得像 G-XXXXXXXXXX）
+       2) 把下面的 G-XXXXXXXXXX 換掉
+       3) 如果你還沒有 GA，先保留也不影響網站正常運作
+  -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    // 如果你尚未替換 ID，也不會報錯，只是 GA 不會真的收資料
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
   <style>
     :root{
       --bg0:#070A12;
@@ -16,40 +30,50 @@
       --muted:#A7B0C0;
       --accent:#38BDF8;
       --good:#22C55E;
+      --warn:#FBBF24;
       --shadow: 0 18px 50px rgba(0,0,0,.55);
     }
-
     *{box-sizing:border-box}
-
     html,body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI";
       color: var(--text);
       background:
         radial-gradient(1200px 700px at 15% 10%, rgba(56,189,248,.22), transparent 60%),
         radial-gradient(1100px 650px at 80% 20%, rgba(34,197,94,.18), transparent 55%),
+        radial-gradient(900px 500px at 55% 85%, rgba(99,102,241,.18), transparent 60%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
     }
-
     a{color:#7DD3FC;text-decoration:none}
     a:hover{text-decoration:underline}
 
     .page{
-      max-width:1040px;
+      max-width:1100px;
       margin:0 auto;
       padding:60px 18px 90px;
     }
-
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      margin-bottom:28px;
+    }
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
     h1{
       font-size:38px;
-      margin:0 0 12px;
+      margin:0;
+      letter-spacing:.2px;
     }
-
     .sub{
+      margin:0;
       color:var(--muted);
       line-height:1.7;
-      max-width:860px;
-      margin-bottom:32px;
+      max-width:820px;
     }
 
     .glass{
@@ -58,207 +82,351 @@
       border-radius:20px;
       box-shadow: var(--shadow);
       backdrop-filter: blur(14px);
-      padding:26px;
-      margin-bottom:24px;
+      -webkit-backdrop-filter: blur(14px);
+      padding:24px;
+      margin-bottom:22px;
     }
-
+    .glass.soft{
+      background: var(--card2);
+      box-shadow: 0 12px 36px rgba(0,0,0,.42);
+    }
     .hero{
       background: linear-gradient(135deg, rgba(56,189,248,.18), rgba(34,197,94,.14));
+      border: 1px solid rgba(125,211,252,.28);
     }
-
     .tag{
-      display:inline-block;
-      padding:6px 12px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 12px;
       border-radius:999px;
       background:rgba(15,23,42,.55);
       border:1px solid var(--border);
       font-size:13px;
       margin-bottom:10px;
+      color:#DDE7FF;
     }
-
     h2{margin:6px 0 12px;font-size:24px}
     h3{margin:6px 0 10px;font-size:20px}
+    p{color:#CBD5F5;line-height:1.75;margin:10px 0}
+    .muted{font-size:13px;color:var(--muted);line-height:1.6}
+    .divider{height:1px;background:rgba(148,163,184,.18);margin:18px 0}
 
-    p{color:#CBD5F5;line-height:1.75}
-
-    .btn-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:18px;
-    }
-
+    .btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
     .btn{
-      padding:12px 18px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:12px 16px;
       border-radius:14px;
-      font-weight:800;
-      border:0;
+      font-weight:900;
+      border:1px solid rgba(148,163,184,.18);
+      transition: transform .12s ease, box-shadow .12s ease;
+      user-select:none;
       cursor:pointer;
     }
-
+    .btn:hover{transform: translateY(-1px); box-shadow: 0 12px 30px rgba(0,0,0,.35);}
     .btn.primary{
-      background:linear-gradient(135deg,#38BDF8,#7DD3FC);
+      background: linear-gradient(135deg, rgba(56,189,248,.95), rgba(125,211,252,.92));
       color:#041016;
+      border:0;
     }
-
     .btn.green{
-      background:linear-gradient(135deg,#22C55E,#86EFAC);
+      background: linear-gradient(135deg, rgba(34,197,94,.95), rgba(134,239,172,.9));
       color:#052012;
+      border:0;
     }
-
     .btn.ghost{
-      background:rgba(2,6,23,.4);
-      color:#E5E7EB;
-      border:1px solid var(--border);
+      background: rgba(2,6,23,.40);
+      color: var(--text);
+    }
+    .btn.warn{
+      background: linear-gradient(135deg, rgba(251,191,36,.95), rgba(253,230,138,.92));
+      color:#2b1b00;
+      border:0;
     }
 
     .grid{
       display:grid;
       grid-template-columns:1fr;
-      gap:20px;
+      gap:18px;
     }
-
-    @media(min-width:900px){
-      .grid{grid-template-columns:1.2fr .8fr}
+    @media(min-width:920px){
+      .grid{grid-template-columns:1.25fr .75fr;}
     }
 
     .item{
       background:rgba(2,6,23,.45);
-      border:1px solid var(--border);
+      border:1px solid rgba(148,163,184,.18);
       border-radius:16px;
       padding:14px;
       margin-top:12px;
     }
-
     .item-head{
       display:flex;
       justify-content:space-between;
       align-items:flex-start;
       gap:12px;
     }
-
     .badge{
       font-size:12px;
-      padding:4px 10px;
+      padding:5px 10px;
       border-radius:999px;
-      background:#1E293B;
-      border:1px solid var(--border);
+      background:rgba(30,41,59,.6);
+      border:1px solid rgba(148,163,184,.18);
+      color:#D9E2FF;
+      white-space:nowrap;
+    }
+    .price{
+      font-weight:900;
+      color:#EAF2FF;
+      margin-top:8px;
     }
 
-    ul{padding-left:20px}
+    ul{padding-left:20px;margin:10px 0}
     li{margin:8px 0}
-
-    .divider{
-      height:1px;
-      background:var(--border);
-      margin:20px 0;
-    }
 
     .notice{
       background:rgba(2,6,23,.45);
-      border:1px dashed var(--border);
+      border:1px dashed rgba(148,163,184,.26);
       border-radius:16px;
       padding:16px;
+      margin-top:12px;
     }
 
-    .muted{font-size:13px;color:var(--muted)}
+    .footer{
+      margin-top:34px;
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
+    }
+    .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas;
+      font-size:12px;
+      padding:2px 8px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.20);
+      background: rgba(2,6,23,.35);
+      color:#cbd5f5;
+      display:inline-block;
+      margin:2px 0;
+    }
   </style>
 </head>
 
 <body>
-<div class="page">
+  <div class="page">
+    <div class="topbar">
+      <div class="brand">
+        <h1>🚀 AI 副業工具中心</h1>
+        <p class="sub">
+          免費工具幫你找到方向，<b>聯盟 + 模板 + 會員</b>把它變成長期收入。<br>
+          （不會程式也 OK）
+        </p>
+      </div>
 
-  <h1>🚀 AI 副業工具中心</h1>
-  <p class="sub">
-    免費工具幫你找到方向，<br>
-    用對方法，把副業慢慢做成長期收入。
-  </p>
-
-  <!-- 主打卡 -->
-  <div class="glass hero">
-    <span class="tag">🔥 主打｜先拿結果再決定</span>
-    <h2>我先免費回你 3 個「可執行副業方向」</h2>
-    <p>
-      把你的 <b>技能 / 資源 / 興趣</b> 告訴我，<br>
-      我會回你 3 個方向，每個都包含：<br>
-      <b>怎麼開始、做什麼內容、用什麼工具、怎麼變現。</b>
-    </p>
-
-    <div class="btn-row">
-      <a class="btn primary" href="tools/idea.html">👉 先用免費工具（30秒）</a>
-      <a class="btn green" href="#contact">👉 直接找我（最快）</a>
-      <a class="btn ghost" href="#vip">✨ 看進階版</a>
+      <div class="btn-row" style="margin-top:0">
+        <a class="btn ghost track" data-event="nav_click" data-label="去工具頁" href="tools/idea.html">🧠 去工具</a>
+        <a class="btn green track" data-event="nav_click" data-label="加入LINE" href="#contact">✅ 加 LINE</a>
+      </div>
     </div>
 
-    <p class="muted">✅ 新手可做｜✅ 0 成本｜✅ 可複製流程</p>
-  </div>
-
-  <div class="grid">
-
-    <!-- 聯盟推薦 -->
-    <div class="glass">
-      <span class="tag">② 聯盟推薦（像心得，不像推銷）</span>
-      <h3>我實際在用的工具 / 入門必備</h3>
-      <p class="muted">每個只推薦一個理由，之後可替換為聯盟連結。</p>
-
-      <div class="item">
-        <div class="item-head">
-          <b>Canva（做圖 / 模板）</b>
-          <span class="badge">內容產出</span>
-        </div>
-        <p class="muted">新手最快做出「看起來專業」的封面、貼文。</p>
-        <a href="https://www.canva.com" target="_blank">👉 工具連結</a>
-      </div>
-
-      <div class="item">
-        <div class="item-head">
-          <b>Notion（流程 / 任務）</b>
-          <span class="badge">流程管理</span>
-        </div>
-        <p class="muted">把副業變成可重複執行的清單，才不會三天放棄。</p>
-        <a href="https://www.notion.so" target="_blank">👉 工具連結</a>
-      </div>
-
-      <div class="divider"></div>
-
-      <h3>入門必備小物（之後換聯盟）</h3>
-      <ul>
-        <li>補光燈：畫面清楚＝成交率更高</li>
-        <li>桌面支架：拍內容更穩定</li>
-        <li>領夾麥克風：聲音清楚＝信任感提升</li>
-      </ul>
-    </div>
-
-    <!-- 會員鋪路 -->
-    <div class="glass" id="vip">
-      <span class="tag">③ 進階版（會員 / 模板）</span>
-      <h3>想更快？直接拿流程與模板</h3>
-      <ul>
-        <li>Notion 副業流程模板</li>
-        <li>貼文 / 短影音腳本模板（不露臉）</li>
-        <li>推薦連結擺放技巧（轉換更高）</li>
-      </ul>
-
-      <div class="notice">
-        <b>📌 先加入等候名單（免費）</b>
-        <p class="muted">進階版上線會第一時間通知你。</p>
-        <a class="btn green" href="#contact">👉 加 LINE 進名單</a>
-      </div>
-
-      <div class="divider"></div>
-
-      <h3 id="contact">📩 聯絡我（不推銷）</h3>
-      <p class="muted">貼上你的技能 / 興趣，我回你 3 個方向。</p>
+    <!-- HERO（轉換最高） -->
+    <div class="glass hero" id="top">
+      <span class="tag">🔥 主打｜先拿結果再決定</span>
+      <h2>我先免費回你 3 個「可執行副業方向」</h2>
       <p>
-        ✅ LINE：
-        <a href="https://line.me/R/ti/p/@YOUR_LINE_ID" target="_blank">
-          點我加入
-        </a>
+        你只要把 <b>技能 / 資源 / 興趣</b> 丟給我，<br>
+        我會回你 3 個方向，每個都包含：<b>怎麼開始、做什麼內容、用什麼工具、怎麼變現</b>。
+      </p>
+
+      <div class="btn-row">
+        <a class="btn primary track" data-event="cta_click" data-label="使用免費工具" href="tools/idea.html">👉 先用免費工具（30秒）</a>
+        <a class="btn green track" data-event="cta_click" data-label="直接聯絡" href="#contact">👉 直接找我（最快）</a>
+        <a class="btn warn track" data-event="cta_click" data-label="看進階版" href="#vip">✨ 看進階版（模板/會員）</a>
+      </div>
+
+      <p class="muted">
+        ✅ 新手可做｜✅ 0 成本｜✅ 可複製流程｜✅ 先做出第一筆再升級
       </p>
     </div>
 
+    <div class="grid">
+
+      <!-- A) 聯盟推薦（2 個最容易成交的類型） -->
+      <div class="glass soft" id="affiliate">
+        <span class="tag">A｜聯盟推薦（最穩的被動收入）</span>
+        <h3>先推 2 個「最容易成交」的東西</h3>
+        <p class="muted">
+          原則：<b>少而精</b>，每個只講一個理由。你先貼商品頁也行，之後再換成聯盟連結。
+        </p>
+
+        <!-- 推薦 1：補光燈（高成交） -->
+        <div class="item">
+          <div class="item-head">
+            <b>推薦商品 1：補光燈（拍內容/商品更清楚）</b>
+            <span class="badge">成交率提升</span>
+          </div>
+          <p class="muted">為什麼推：畫面變清楚，信任感直接上升，做副業更容易成交。</p>
+          <div class="btn-row">
+            <!-- ✅ 把這裡換成你自己的蝦皮/亞馬遜商品或聯盟連結 -->
+            <a class="btn primary track" data-event="affiliate_click" data-label="補光燈" href="https://example.com" target="_blank">👉 查看推薦</a>
+            <a class="btn ghost track" data-event="affiliate_click" data-label="補光燈-備援" href="https://shopee.tw" target="_blank">👉 先用蝦皮搜尋</a>
+          </div>
+        </div>
+
+        <!-- 推薦 2：領夾麥克風（高成交） -->
+        <div class="item">
+          <div class="item-head">
+            <b>推薦商品 2：領夾麥克風（聲音清楚 = 專業感）</b>
+            <span class="badge">信任感上升</span>
+          </div>
+          <p class="muted">為什麼推：很多人願意買，是因為「聽起來專業」。麥克風超加分。</p>
+          <div class="btn-row">
+            <!-- ✅ 把這裡換成你自己的蝦皮/亞馬遜商品或聯盟連結 -->
+            <a class="btn primary track" data-event="affiliate_click" data-label="領夾麥克風" href="https://example.com" target="_blank">👉 查看推薦</a>
+            <a class="btn ghost track" data-event="affiliate_click" data-label="麥克風-備援" href="https://shopee.tw" target="_blank">👉 先用蝦皮搜尋</a>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3>工具聯盟（最自然、最不惹人反感）</h3>
+
+        <div class="item">
+          <div class="item-head">
+            <b>Canva（做圖/模板）</b>
+            <span class="badge">內容產出</span>
+          </div>
+          <p class="muted">新手最快做出「看起來專業」的封面、貼文、簡報。</p>
+          <a class="btn ghost track" data-event="affiliate_click" data-label="Canva" href="https://www.canva.com" target="_blank">👉 我用的工具連結</a>
+        </div>
+
+        <div class="item">
+          <div class="item-head">
+            <b>Notion（流程/任務/筆記）</b>
+            <span class="badge">流程管理</span>
+          </div>
+          <p class="muted">把副業變成可重複執行的清單，才不會三天放棄。</p>
+          <a class="btn ghost track" data-event="affiliate_click" data-label="Notion" href="https://www.notion.so" target="_blank">👉 我用的工具連結</a>
+        </div>
+
+        <div class="notice">
+          <b>✅ 小提醒</b>
+          <p class="muted" style="margin:8px 0 0">
+            你現在先用一般商品連結也 OK。等你開通蝦皮/Amazon 聯盟，再把 <span class="kbd">https://example.com</span> 換成你的聯盟連結就會開始有抽成。
+          </p>
+        </div>
+      </div>
+
+      <!-- B) 模板/懶人包（低價好賣） + C) 會員鋪路 -->
+      <div class="glass soft" id="vip">
+        <span class="tag">B｜模板商品（低價好賣）</span>
+        <h3>進階版：直接拿流程與模板（省你 2 週）</h3>
+        <p class="muted">
+          你現在網站已經能引流，下一步就是：把「結果」包成模板商品，做被動收入。
+        </p>
+
+        <!-- 模板商品 1 -->
+        <div class="item">
+          <div class="item-head">
+            <b>模板 1：Notion 副業流程模板</b>
+            <span class="badge">最推薦</span>
+          </div>
+          <p class="muted">任務清單 + 日/週計畫表 + 內容排程，一套照做就會累積。</p>
+          <div class="price">建議售價：NT$99 ～ NT$199</div>
+          <div class="btn-row">
+            <!-- ✅ 之後換成你的付款頁（例如：Gumroad/Shopify/綠界/PayNow/表單付款） -->
+            <a class="btn primary track" data-event="product_click" data-label="Notion模板-購買" href="https://example.com" target="_blank">👉 購買連結（待替換）</a>
+            <a class="btn ghost track" data-event="product_click" data-label="Notion模板-預覽" href="https://example.com" target="_blank">👀 預覽（待替換）</a>
+          </div>
+        </div>
+
+        <!-- 模板商品 2 -->
+        <div class="item">
+          <div class="item-head">
+            <b>模板 2：不露臉短影音腳本包</b>
+            <span class="badge">內容模板</span>
+          </div>
+          <p class="muted">20 組可套用腳本 + 分鏡提示，直接拍就能發。</p>
+          <div class="price">建議售價：NT$199 ～ NT$399</div>
+          <div class="btn-row">
+            <!-- ✅ 之後換成你的付款頁 -->
+            <a class="btn primary track" data-event="product_click" data-label="腳本包-購買" href="https://example.com" target="_blank">👉 購買連結（待替換）</a>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <span class="tag">C｜會員/SaaS 鋪路（先收名單）</span>
+        <h3>先加入等候名單（免費）</h3>
+        <p class="muted">
+          你先收名單，後面再升級「真 AI 版本 / VIP 次數」，就能做會員制收入。
+        </p>
+
+        <div class="notice" id="contact">
+          <b>📩 聯絡我（不推銷）</b>
+          <p class="muted" style="margin:8px 0 10px">
+            直接貼上你的：<b>技能 / 資源 / 興趣</b>，我回你 3 個可執行方向（免費）。
+          </p>
+
+          <!-- ✅ 把 @YOUR_LINE_ID 換掉 -->
+          <a class="btn green track" data-event="lead_click" data-label="加入LINE" href="https://line.me/R/ti/p/@YOUR_LINE_ID" target="_blank">
+            ✅ 加 LINE 進名單
+          </a>
+
+          <p class="muted" style="margin-top:12px">
+            你可以直接複製這句丟我：<br>
+            <span class="kbd">「我現在有 ___（技能/資源），想做 ___（方向），卡在 ___（問題）」</span>
+          </p>
+        </div>
+
+        <div class="divider"></div>
+
+        <a class="btn ghost track" data-event="nav_click" data-label="回到頂部" href="#top">⬆️ 回到頂部</a>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      © 2026 AI 副業工具中心｜GitHub Pages 部署｜深色版 UI + 追蹤已啟用
+    </div>
   </div>
 
-</div>
+  <!-- ✅ C) 點擊追蹤：自動記錄所有帶 .track 的按鈕/連結 -->
+  <script>
+    (function(){
+      function safeText(el){
+        const t = (el.getAttribute('data-label') || el.textContent || '').trim();
+        return t.slice(0, 80);
+      }
+
+      document.addEventListener('click', function(e){
+        const el = e.target.closest('.track');
+        if(!el) return;
+
+        const eventName = el.getAttribute('data-event') || 'click';
+        const label = safeText(el);
+        const href = el.getAttribute('href') || '';
+
+        // 1) GA4 event（如果你已換上 G-XXXXXXXXXX，就會進 GA）
+        try{
+          if(typeof gtag === 'function'){
+            gtag('event', eventName, {
+              event_category: 'engagement',
+              event_label: label,
+              link_url: href
+            });
+          }
+        }catch(_){}
+
+        // 2) Console log（你也可以用這個在瀏覽器檢查是否有記到）
+        // 開發者工具(Console)會看到：
+        // [track] cta_click 使用免費工具 tools/idea.html
+        console.log('[track]', eventName, label, href);
+      }, true);
+    })();
+  </script>
 </body>
 </html>
